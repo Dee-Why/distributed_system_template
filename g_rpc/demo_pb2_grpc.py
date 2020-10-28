@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import 1_pb2 as 1__pb2
+import g_rpc.demo_pb2 as demo__pb2
 
 
 class bo_advisorStub(object):
@@ -16,8 +16,8 @@ class bo_advisorStub(object):
         """
         self.get_suggestion = channel.unary_unary(
                 '/test.bo_advisor/get_suggestion',
-                request_serializer=1__pb2.get_suggestion_param.SerializeToString,
-                response_deserializer=1__pb2.get_suggestion_reply.FromString,
+                request_serializer=demo__pb2.get_suggestion_param.SerializeToString,
+                response_deserializer=demo__pb2.get_suggestion_reply.FromString,
                 )
 
 
@@ -35,8 +35,8 @@ def add_bo_advisorServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'get_suggestion': grpc.unary_unary_rpc_method_handler(
                     servicer.get_suggestion,
-                    request_deserializer=1__pb2.get_suggestion_param.FromString,
-                    response_serializer=1__pb2.get_suggestion_reply.SerializeToString,
+                    request_deserializer=demo__pb2.get_suggestion_param.FromString,
+                    response_serializer=demo__pb2.get_suggestion_reply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -60,7 +60,7 @@ class bo_advisor(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/test.bo_advisor/get_suggestion',
-            1__pb2.get_suggestion_param.SerializeToString,
-            1__pb2.get_suggestion_reply.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+                                              demo__pb2.get_suggestion_param.SerializeToString,
+                                              demo__pb2.get_suggestion_reply.FromString,
+                                              options, channel_credentials,
+                                              insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

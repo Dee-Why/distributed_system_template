@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package test_1;
+
+service DemoAdvisor{
+    rpc get_suggestion(get_suggestion_param) returns (get_suggestion_reply){}
+    rpc update_observation(update_observation_param) returns (update_observation_reply){}
+}
+
+message get_suggestion_param{
+    int32 question_id = 1;
+}
+
+message get_suggestion_reply{
+    string result = 1;
+}
+
+message update_observation_param{
+    int32 new_id = 1;
+    string new_name = 2;
+}
+
+message update_observation_reply{
+    string log_info = 1;
+}
