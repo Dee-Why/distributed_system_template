@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package test;
+
+service bo_advisor{
+    rpc get_suggestion(get_suggestion_param) returns (get_suggestion_reply){}
+}
+
+message get_suggestion_param{
+    int32 id = 2;
+    string name = 1;
+}
+
+message get_suggestion_reply{
+    string result = 1;
+}
+
